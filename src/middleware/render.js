@@ -456,7 +456,7 @@ module.exports = function (middleware) {
 			updateNavItem(item, '/unread', '', unreadCount.topic, unreadData, tidsByFilter, unreadCounts, unreadCount);
 			updateNavItem(item, '/unread?filter=new', 'new', unreadCount.newTopic, unreadData, tidsByFilter, unreadCounts, unreadCount);
 			updateNavItem(item, '/unread?filter=watched', 'watched', unreadCount.watchedTopic, unreadData, tidsByFilter, unreadCounts, unreadCount);
-			updateNavItem(item, '/unread?filter=unreplied', 'unreplied', unreadCount.unrepliedTopic, unreadData, tidsByFilter, unreadCounts, unreadCount);		
+			updateNavItem(item, '/unread?filter=unreplied', 'unreplied', unreadCount.unrepliedTopic, unreadData, tidsByFilter, unreadCounts, unreadCount);
 
 			['flags'].forEach((prop) => {
 				if (item && item.originalRoute === `/${prop}` && unreadCount[prop] > 0) {
