@@ -11,6 +11,9 @@ NodeBB by itself contains a "common core" of basic functionality, while addition
 
 ### [Try it now](//try.nodebb.org) | [Documentation](//docs.nodebb.org)
 
+## Team Penguins
+Team Members: Andrew Wang, Wenna Zhang, Annie Zhang, Jordan Fon Sing, Best Pantusen
+
 ## Screenshots
 
 NodeBB's theming engine is highly flexible and does not restrict your design choices. Check out some themed installs in these screenshots below:
