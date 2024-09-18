@@ -95,15 +95,19 @@ define('admin/settings/navigation', [
 				});
 			});
 		});
-		const renderForm = new Promise((resolve) => {
-			Benchpress.parse('admin/settings/navigation', 'enabled', { enabled: [data] }, function (li) {
-				translator.translate(li, function (li) {
-					li = $(translator.unescape(li));
-					$('#enabled').append(li);
-					resolve();
+		function helper() {
+			console.log('zhangruoxin');
+			return new Promise((resolve) => {
+				Benchpress.parse('admin/settings/navigation', 'enabled', { enabled: [data] }, function (li) {
+					translator.translate(li, function (li) {
+						li = $(translator.unescape(li));
+						$('#enabled').append(li);
+						resolve();
+					});
 				});
 			});
-		});
+		}
+		const renderForm = helper();
 
 		Promise.all([
 			renderNav,
