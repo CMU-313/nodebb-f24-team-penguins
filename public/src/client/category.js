@@ -31,28 +31,28 @@ define('forum/category', [
 
 		sort.handleSort('categoryTopicSort', 'category/' + ajaxify.data.slug);
 
-				/////
-				const searchFormHTML = `
-					<div class="category-search">
-						<form role="search" action="/search" method="get" class="form-inline">
-							<div class="input-group">
-								<input type="text" name="query" placeholder="Search topics..." class="form-control">
-								<input type="hidden" name="cid" value="${cid}">
-								<div class="input-group-append">
-									<button type="submit" class="btn btn-primary">
-										<i class="fa fa-search"></i> Search
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>`;
-		
-				// Insert the search form before the list of topics
-				$('#content .category-header').prepend(searchFormHTML);
-		
-				share.addShareHandlers(ajaxify.data.name);
-				topicList.init('category', loadTopicsAfter);
-				sort.handleSort('categoryTopicSort', 'category/' + ajaxify.data.slug);
+		// Partially assisted by ChatGPT
+		const searchFormHTML = `
+			<div class="category-search">
+				<form role="search" action="/search" method="get" class="form-inline">
+					<div class="input-group">
+						<input type="text" name="query" placeholder="Search topics..." class="form-control">
+						<input type="hidden" name="cid" value="${cid}">
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-search"></i> Search
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>`;
+
+		// Insert the search form before the list of topics
+		$('#content .category-header').prepend(searchFormHTML);
+
+		share.addShareHandlers(ajaxify.data.name);
+		topicList.init('category', loadTopicsAfter);
+		sort.handleSort('categoryTopicSort', 'category/' + ajaxify.data.slug);
 			////
 
 		if (!config.usePagination) {
