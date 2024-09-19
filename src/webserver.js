@@ -253,14 +253,14 @@ async function listen() {
 	const args = isSocket ? [socketPath] : [port, bind_address];
 
 	if (isSocket) {
-        process.umask('0000');
-        try {
-            await exports.testSocket(socketPath);
-        } catch (err) {
-            winston.error(`[startup] NodeBB was unable to secure domain socket access (${socketPath})\n${err.stack}`);
-            throw err;
-        }
-    }
+		process.umask('0000');
+		try {
+			await exports.testSocket(socketPath);
+		} catch (err) {
+			winston.error(`[startup] NodeBB was unable to secure domain socket access (${socketPath})\n${err.stack}`);
+			throw err;
+		}
+	}
 	return startServer(args, isSocket, socketPath, port, bind_address);
 }
 
