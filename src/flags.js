@@ -709,7 +709,12 @@ Flags.update = async function (flagId, uid, changeset) {
 	if (!current.type) {
 		return;
 	}
-	const now = changeset.datetime || Date.now();
+	const now = currentTime(changeset);
+
+	function currentTime(changeset) {
+		return changeset.datetime || Date.now();
+	}
+
 	const notifyAssignee = async function (assigneeId) {
 		if (assigneeId === '' || parseInt(uid, 10) === parseInt(assigneeId, 10)) {
 			return;
@@ -724,6 +729,7 @@ Flags.update = async function (flagId, uid, changeset) {
 		});
 		await notifications.push(notifObj, [assigneeId]);
 	};
+
 	const isAssignable = async function (assigneeId) {
 		let allowed = false;
 		allowed = await user.isAdminOrGlobalMod(assigneeId);
@@ -748,18 +754,7 @@ Flags.update = async function (flagId, uid, changeset) {
 		if (current[prop] === changeset[prop]) {
 			delete changeset[prop];
 		} else if (prop === 'state') {
-			if (!Flags._states.has(changeset[prop])) {
-				delete changeset[prop];
-			} else {
-				tasks.push(db.sortedSetAdd(`flags:byState:${changeset[prop]}`, now, flagId));
-				tasks.push(db.sortedSetRemove(`flags:byState:${current[prop]}`, flagId));
-				if (changeset[prop] === 'resolved' && meta.config['flags:actionOnResolve'] === 'rescind') {
-					tasks.push(rescindNotifications(`flag:${current.type}:${current.targetId}`));
-				}
-				if (changeset[prop] === 'rejected' && meta.config['flags:actionOnReject'] === 'rescind') {
-					tasks.push(rescindNotifications(`flag:${current.type}:${current.targetId}`));
-				}
-			}
+			stateChange(prop);
 		} else if (prop === 'assignee') {
 			if (changeset[prop] === '') {
 				tasks.push(db.sortedSetRemove(`flags:byAssignee:${changeset[prop]}`, flagId));
@@ -769,6 +764,20 @@ Flags.update = async function (flagId, uid, changeset) {
 			} else {
 				tasks.push(db.sortedSetAdd(`flags:byAssignee:${changeset[prop]}`, now, flagId));
 				tasks.push(notifyAssignee(changeset[prop]));
+			}
+		}
+	}
+	function stateChange(prop) {
+		if (!Flags._states.has(changeset[prop])) {
+			delete changeset[prop];
+		} else {
+			tasks.push(db.sortedSetAdd(`flags:byState:${changeset[prop]}`, now, flagId));
+			tasks.push(db.sortedSetRemove(`flags:byState:${current[prop]}`, flagId));
+			if (changeset[prop] === 'resolved' && meta.config['flags:actionOnResolve'] === 'rescind') {
+				tasks.push(rescindNotifications(`flag:${current.type}:${current.targetId}`));
+			}
+			if (changeset[prop] === 'rejected' && meta.config['flags:actionOnReject'] === 'rescind') {
+				tasks.push(rescindNotifications(`flag:${current.type}:${current.targetId}`));
 			}
 		}
 	}
