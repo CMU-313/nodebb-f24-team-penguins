@@ -39,4 +39,3 @@ paths:
           description: Bad request
         '404':
           description: No matching topics found
-å
