@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: Topics Search API
+  version: 1.0.0
+paths:
+  /search/topics:
+    get:
+      summary: Search for topics
+      description: |
+        Returns a list of topics based on the search query and optional filters.
+      parameters:
+        - name: search
+          in: query
+          required: false
+          description: The keyword used for searching topics
+          schema:
+            type: string
+            example: 'NodeBB'
+      responses:
+        '200':
+          description: A list of matching topics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  topics:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tid:
+                          type: integer
+                          description: Topic ID
+                        title:
+                          type: string
+                          description: Title of the topic
+        '400':
+          description: Bad request
+        '404':
+          description: No matching topics found
+``
