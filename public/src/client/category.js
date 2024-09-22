@@ -66,6 +66,31 @@ define('forum/category', [
 		}
 	}
 
+	function handleSearch() {
+		$('#search-input').on('input', async function () {
+			const query = $(this).val();
+			if (query.length === 0) {
+				// Optionally reload default topics if search input is cleared
+				loadTopicsAfter(0, 'next', () => {});
+				return;
+			}
+
+			try {
+				const { topics } = await api.get(`/categories/${ajaxify.data.cid}/topics/search`, {
+					query: query,
+				});
+				$('[component="category/topic-list"]').empty();
+				app.parseAndTranslate('category', 'topics', { topics }, function (html) {
+					html.find('.timeago').timeago();
+					$('[component="category/topic-list"]').append(html);
+					hooks.fire('action:topics.loaded', { topics });
+				});
+			} catch (err) {
+				alerts.error('Search failed. Please try again.');
+			}
+		});
+	}
+
 	function handleIgnoreWatch(cid) {
 		$('[component="category/watching"], [component="category/tracking"], [component="category/ignoring"], [component="category/notwatching"]').on('click', function () {
 			const $this = $(this);
@@ -111,31 +136,6 @@ define('forum/category', [
 			});
 
 			return false;
-		});
-	}
-
-	function handleSearch() {
-		$('#search-input').on('input', async function () {
-			const query = $(this).val();
-			if (query.length === 0) {
-				// Optionally reload default topics if search input is cleared
-				loadTopicsAfter(0, 'next', () => {});
-				return;
-			}
-
-			try {
-				const { topics } = await api.get(`/categories/${ajaxify.data.cid}/topics/search`, {
-					query: query,
-				});
-				$('[component="category/topic-list"]').empty();
-				app.parseAndTranslate('category', 'topics', { topics }, function (html) {
-					html.find('.timeago').timeago();
-					$('[component="category/topic-list"]').append(html);
-					hooks.fire('action:topics.loaded', { topics });
-				});
-			} catch (err) {
-				alerts.error('Search failed. Please try again.');
-			}
 		});
 	}
 
