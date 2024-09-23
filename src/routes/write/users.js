@@ -61,6 +61,8 @@ function authenticatedRoutes() {
 	setupApiRoute(router, 'get', '/:uid/exports/:type', [...middlewares, middleware.assert.user, middleware.checkAccountPermissions], controllers.write.users.getExportByType);
 	setupApiRoute(router, 'post', '/:uid/exports/:type', [...middlewares, middleware.assert.user, middleware.checkAccountPermissions], controllers.write.users.generateExportsByType);
 
+	setupApiRoute(router, 'put', '/:uid/bookmark', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
+	
 	// Shorthand route to access user routes by userslug
 	router.all('/+bySlug/:userslug*?', [], controllers.write.users.redirectBySlug);
 }

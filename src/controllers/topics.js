@@ -355,6 +355,20 @@ function addOGImageTag(res, image) {
 	}
 }
 
+function bookmark (req, res, next) {
+	const tid = req.params.topic_id;
+	if (!utils.isNumber(tid)) {
+		return next();
+	}
+	topics.bookmark(tid, req.uid, (err) => {
+		if (err) {
+			return next(err);
+		}
+		res.json('[[success:topic-has-been-bookmarked]]');
+	});
+}
+
+
 topicsController.teaser = async function (req, res, next) {
 	const tid = req.params.topic_id;
 	if (!utils.isNumber(tid)) {
@@ -405,3 +419,5 @@ topicsController.pagination = async function (req, res, next) {
 
 	res.json({ pagination: paginationData });
 };
+
+
