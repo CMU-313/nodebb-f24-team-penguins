@@ -55,7 +55,6 @@ define('forum/category/tools', [
 			categoryCommand('del', '/pin', 'unpin', onCommandComplete);
 			return false;
 		});
-
 		// todo: should also use categoryCommand, but no write api call exists for this yet
 		components.get('topic/mark-unread-for-all').on('click', function () {
 			const tids = topicSelect.getSelectedTids();
