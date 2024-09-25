@@ -187,6 +187,32 @@ async function markAsRead(req, tid) {
 	}
 }
 
+// async function bookmark(req, res, next) {
+//     const tid = req.params.topic_id;
+
+//     // Validate if `tid` is a number
+//     if (!utils.isNumber(tid)) {
+//         return next(new Error('Invalid topic ID'));
+//     }
+
+//     try {
+//         // Bookmark the topic for the user
+//         await topics.bookmark(tid, req.uid);
+
+//         // Additional actions after bookmarking (if necessary)
+//         const promises = [
+//             topics.pushUnreadCount(req.uid)  // Update unread count (if needed)
+//         ];
+
+//         // Execute all async actions
+//         await Promise.all(promises);
+
+//         // Respond with success
+//         res.json({ message: '[[success:topic-has-been-bookmarked]]' });
+//     } catch (err) {
+//         return next(err);  // Handle errors gracefully// }
+// }
+
 async function buildBreadcrumbs(topicData) {
 	const breadcrumbs = [
 		{
@@ -354,20 +380,6 @@ function addOGImageTag(res, image) {
 		});
 	}
 }
-
-function bookmark (req, res, next) {
-	const tid = req.params.topic_id;
-	if (!utils.isNumber(tid)) {
-		return next();
-	}
-	topics.bookmark(tid, req.uid, (err) => {
-		if (err) {
-			return next(err);
-		}
-		res.json('[[success:topic-has-been-bookmarked]]');
-	});
-}
-
 
 topicsController.teaser = async function (req, res, next) {
 	const tid = req.params.topic_id;

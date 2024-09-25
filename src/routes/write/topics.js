@@ -51,6 +51,5 @@ module.exports = function () {
 
 	setupApiRoute(router, 'put', '/:tid/bookmark', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
 	setupApiRoute(router, 'delete', '/:tid/bookmark', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
-	
 	return router;
 };
