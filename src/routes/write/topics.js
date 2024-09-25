@@ -49,7 +49,7 @@ module.exports = function () {
 	setupApiRoute(router, 'delete', '/:tid/read', [...middlewares, middleware.assert.topic], controllers.write.topics.markUnread);
 	setupApiRoute(router, 'put', '/:tid/bump', [...middlewares, middleware.assert.topic], controllers.write.topics.bump);
 
-	setupApiRoute(router, 'put', '/:tid/bookmark', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
-	setupApiRoute(router, 'delete', '/:tid/bookmark', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
+	setupApiRoute(router, 'put', '/:tid/bookmarks', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
+	setupApiRoute(router, 'delete', '/:tid/bookmarks', [...middlewares, middleware.assert.topic], controllers.write.topics.bookmark);
 	return router;
 };

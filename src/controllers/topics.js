@@ -210,9 +210,9 @@ async function markAsRead(req, tid) {
 //         // Respond with success
 //         res.json({ message: '[[success:topic-has-been-bookmarked]]' });
 //     } catch (err) {
-//         return next(err);  // Handle errors gracefully// }
+//         return next(err);
 // }
-
+// }
 async function buildBreadcrumbs(topicData) {
 	const breadcrumbs = [
 		{
