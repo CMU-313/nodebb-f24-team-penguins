@@ -298,3 +298,16 @@ topicsAPI.bump = async (caller, { tid }) => {
 	await topics.markAsUnreadForAll(tid);
 	topics.pushUnreadCount(caller.uid);
 };
+
+topicsAPI.bookmark = async (caller, { tid }) => {
+	if (!tid) {
+		throw new Error('[[error:invalid-tid]]');
+	}
+
+	if (!caller || !caller.uid) {
+		throw new Error('[[error:not-logged-in]]');
+	}
+	await topics.bookmarks(tid, caller.uid);
+	return { message: '[[success:topic-has-been-bookmarked]]' };
+};
+

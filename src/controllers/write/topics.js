@@ -207,3 +207,9 @@ Topics.bump = async (req, res) => {
 
 	helpers.formatApiResponse(200, res);
 };
+
+Topics.bookmark = async (req, res) => {
+	await api.topics.bookmarks(req, { ...req.params });
+
+	helpers.formatApiResponse(200, res);
+};

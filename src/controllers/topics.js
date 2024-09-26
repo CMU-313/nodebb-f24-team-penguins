@@ -187,6 +187,32 @@ async function markAsRead(req, tid) {
 	}
 }
 
+// async function bookmark(req, res, next) {
+//     const tid = req.params.topic_id;
+
+//     // Validate if `tid` is a number
+//     if (!utils.isNumber(tid)) {
+//         return next(new Error('Invalid topic ID'));
+//     }
+
+//     try {
+//         // Bookmark the topic for the user
+//         await topics.bookmark(tid, req.uid);
+
+//         // Additional actions after bookmarking (if necessary)
+//         const promises = [
+//             topics.pushUnreadCount(req.uid)  // Update unread count (if needed)
+//         ];
+
+//         // Execute all async actions
+//         await Promise.all(promises);
+
+//         // Respond with success
+//         res.json({ message: '[[success:topic-has-been-bookmarked]]' });
+//     } catch (err) {
+//         return next(err);
+// }
+// }
 async function buildBreadcrumbs(topicData) {
 	const breadcrumbs = [
 		{
@@ -405,3 +431,5 @@ topicsController.pagination = async function (req, res, next) {
 
 	res.json({ pagination: paginationData });
 };
+
+
