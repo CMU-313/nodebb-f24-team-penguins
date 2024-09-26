@@ -1,41 +1,135 @@
-openapi: 3.0.0
-info:
-  title: Topics Search API
-  version: 1.0.0
-paths:
-  /search/topics:
-    get:
-      summary: Search for topics
-      description: |
-        Returns a list of topics based on the search query and optional filters.
-      parameters:
-        - name: search
-          in: query
-          required: false
-          description: The keyword used for searching topics
-          schema:
-            type: string
-            example: 'NodeBB'
-      responses:
+get:
+  tags:
+    - search
+  summary: Search for topics
+  description: |
+    This operation returns a list of topics based on the search query and optional filters.
+  parameters:
+    - in: query
+      name: 'search'
+      schema:
+        type: string
+      required: false
+      description: The keyword used for searching topics
+      example: 'NodeBB'  
+    - in: query
+      name: 'cid'
+      schema:
+        type: integer
+      required: false
+      description: The category ID to filter topics within a specific category
+      example: 2         
+  responses:
         '200':
-          description: A list of matching topics
+          description: A list of matching topics successfully retrieved
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  topics:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        tid:
-                          type: integer
-                          description: Topic ID
-                        title:
-                          type: string
-                          description: Title of the topic
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: "ok"
+                      message:
+                        type: string
+                        example: "OK"
+                  response:
+                    type: object
+                    properties:
+                      topics:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            tid:
+                              type: integer
+                              description: A unique topic identifier
+                              example: 1
+                            uid:
+                              type: integer
+                              description: User ID of the topic's creator
+                              example: 1
+                            cid:
+                              type: integer
+                              description: The category ID where the topic belongs
+                              example: 2
+                            mainPid:
+                              type: integer
+                              description: ID of the main post in this topic
+                              example: 1
+                            title:
+                              type: string
+                              description: The title of the topic
+                              example: "Welcome to your NodeBB!"
+                            slug:
+                              type: string
+                              description: URL-friendly version of the topic's title
+                              example: "1/welcome-to-your-nodebb"
+                            timestamp:
+                              type: integer
+                              description: Timestamp of the topic's creation in milliseconds
+                              example: 1726532073831
+                            timestampISO:
+                              type: string
+                              format: date-time
+                              description: ISO format timestamp of the topic's creation
+                              example: "2024-09-17T00:14:33.831Z"
+                            lastposttime:
+                              type: integer
+                              description: Timestamp of the last post in milliseconds
+                              example: 1726532073832
+                            lastposttimeISO:
+                              type: string
+                              format: date-time
+                              description: ISO format timestamp of the last post
+                              example: "2024-09-17T00:14:33.832Z"
+                            postcount:
+                              type: integer
+                              description: Total number of posts in the topic
+                              example: 1
+                            viewcount:
+                              type: integer
+                              description: Total number of views the topic has received
+                              example: 2
+                            postercount:
+                              type: integer
+                              description: Number of unique users who posted in the topic
+                              example: 1
+                            deleted:
+                              type: boolean
+                              description: Indicates if the topic is deleted
+                              example: false
+                            locked:
+                              type: boolean
+                              description: Indicates if the topic is locked
+                              example: false
+                            pinned:
+                              type: boolean
+                              description: Indicates if the topic is pinned in its category
+                              example: false
+                            pinExpiryISO:
+                              type: string
+                              format: date-time
+                              description: Expiry date of the pin (if any) in ISO format
+                              example: ""
+                            votes:
+                              type: integer
+                              description: The net number of votes for the topic (upvotes minus downvotes)
+                              example: 0
+                            tags:
+                              type: array
+                              description: List of tags associated with the topic
+                              items:
+                                type: string
+                                example: "discussion"
+                      count:
+                        type: integer
+                        description: Total number of topics returned
+                        example: 2
         '400':
-          description: Bad request
-        '404':
-          description: No matching topics found
+          description: Bad request due to invalid input or missing parameters
+        '500':
+          description: Internal server error
