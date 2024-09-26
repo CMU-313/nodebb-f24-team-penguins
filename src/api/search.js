@@ -9,6 +9,7 @@ const messaging = require('../messaging');
 const privileges = require('../privileges');
 const meta = require('../meta');
 const plugins = require('../plugins');
+const topics = require('../topics');
 
 const controllersHelpers = require('../controllers/helpers');
 
@@ -189,4 +190,15 @@ searchApi.roomMessages = async (caller, { query, roomId, uid }) => {
 		.filter(msg => msg && !msg.deleted && msg.timestamp > userjoinTimestamp);
 
 	return { messages: messageData };
+};
+
+searchApi.topics = async (caller, data) => {
+	const query = data.query || '';
+	const cid = data.cid || null;
+
+	const searchOptions = { query, cid };
+
+	const searchResults = await topics.searchTopics(searchOptions);
+
+	return { topics: searchResults.topics, count: searchResults.matchCount };
 };

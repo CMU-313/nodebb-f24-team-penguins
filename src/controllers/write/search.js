@@ -10,7 +10,8 @@ Search.categories = async (req, res) => {
 };
 
 Search.topics = async (req, res) => {
-	helpers.formatApiResponse(200, res, await api.search.topics(req, req.query));
+	const { query, cid } = req.query;
+	helpers.formatApiResponse(200, res, await api.search.topics(req, { query, cid }));
 };
 
 Search.roomUsers = async (req, res) => {
