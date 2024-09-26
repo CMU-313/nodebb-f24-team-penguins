@@ -6,7 +6,7 @@
 
 const { expect } = require('chai');
 const sinon = require('sinon');
-const db = require('../database');
+const db = require('../mocks/databasemock');
 
 // Static import instead of dynamic
 const Topics = require('../../src/api/index').default;
