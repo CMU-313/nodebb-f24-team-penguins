@@ -130,22 +130,6 @@ const db = require('../../src/database');
 
 module.exports = db;
 
-db.getSetMembers = function (setName) {
-	console.log('getSetMembers called with setName:', setName); // Log the input
-
-	let result;
-	if (setName === 'testSet1') {
-		result = ['1', '2', '3', '4', '5'];
-	} else if (setName === 'parallelset') {
-		result = ['1', '2', '3'];
-	} else {
-		result = [];
-	}
-
-	console.log('Returning result:', result); // Log the output
-	return Promise.resolve(result); // Ensure this returns a promise
-};
-
 before(async function () {
 	this.timeout(30000);
 
