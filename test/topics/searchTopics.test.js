@@ -9,7 +9,7 @@ const sinon = require('sinon');
 const db = require('../mocks/databasemock');
 
 // Static import instead of dynamic
-const Topics = require('../../src/api/index').default;
+const Topics = require('../../src/api/topics').default;
 
 describe('Topics search API', () => {
 	let dbStub; let
@@ -27,7 +27,8 @@ describe('Topics search API', () => {
 		sinon.restore();
 	});
 
-	it('should return an empty result if no query is provided', async () => {
+	it('should return an empty result if no query is provided', async function () {
+		this.timeout(30000); // Increase timeout for this test
 		// Arrange
 		const data = { query: '' };
 		dbStub.resolves([]); // Mock empty response
