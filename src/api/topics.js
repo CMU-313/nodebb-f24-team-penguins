@@ -15,13 +15,20 @@ const { doTopicAction } = apiHelpers;
 const websockets = require('../socket.io');
 const socketHelpers = require('../socket.io/helpers');
 
-const topicsAPI = module.exports;
+const topicsAPI = {};
 
 topicsAPI.getTopicsFields = async function () {
 	// Simulating fetching topic fields
 	return [
 		{ title: 'NodeBB' },
 		{ title: 'Welcome' },
+	];
+};
+
+topicsAPI.getTopics = async function () {
+	return [
+		{ tid: 1, title: 'Welcome to your NodeBB' },
+		{ tid: 2, title: 'New Discussion' },
 	];
 };
 
