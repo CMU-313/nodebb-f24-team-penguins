@@ -326,3 +326,4 @@ topicsAPI.bookmark = async (caller, { tid }) => {
 	return { message: '[[success:topic-has-been-bookmarked]]' };
 };
 
+module.exports = topicsAPI;
