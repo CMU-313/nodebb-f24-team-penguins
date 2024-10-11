@@ -44,7 +44,6 @@ define('forum/category', [
 		handleLoadMoreSubcategories();
 
 		handleSearch();
-		
 		handleBookmarks();
 
 		categorySelector.init($('[component="category-selector"]'), {
@@ -57,7 +56,6 @@ define('forum/category', [
 
 		hooks.fire('action:topics.loaded', { topics: ajaxify.data.topics });
 		hooks.fire('action:category.loaded', { cid: ajaxify.data.cid });
-
 	};
 
 	function handleScrollToTopicIndex() {
@@ -116,8 +114,6 @@ define('forum/category', [
 			}
 		});
 	}
-
-	
 
 	function handleIgnoreWatch(cid) {
 		$('[component="category/watching"], [component="category/tracking"], [component="category/ignoring"], [component="category/notwatching"]').on('click', function () {
