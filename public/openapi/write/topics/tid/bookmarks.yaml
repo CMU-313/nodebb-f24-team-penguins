@@ -1,0 +1,121 @@
+put:
+  tags:
+    - topics
+  summary: bookmark topic for the calling user
+  description: |
+    This operation bookmarks a topic for the calling user.
+
+    **Note**: This operation only affects the user making the request.
+  parameters:
+    - in: path
+      name: tid
+      schema:
+        type: string
+      required: true
+      description: A valid topic ID
+      example: 1
+  responses:
+    '200':
+      description: Topic successfully bookmarked for the calling user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                $ref: ../../../components/schemas/Status.yaml#/Status
+              response:
+                type: object
+                properties: {}
+    '400':
+      description: Invalid request, possibly due to invalid topic ID or missing parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Invalid request: topic ID is missing or invalid."
+    '404':
+      description: Topic not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Topic ID not found."
+    '401':
+      description: Unauthorized access
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Unauthorized: Please log in to bookmark topics."
+
+delete:
+  tags:
+    - topics
+  summary: Remove bookmark from a topic for the calling user
+  description: |
+    This endpoint removes the bookmark on a topic for the calling user.
+    
+    The user who makes this request will have the specified topic removed from their list of bookmarks.
+  parameters:
+    - in: path
+      name: tid
+      schema:
+        type: string
+      required: true
+      description: The unique identifier (ID) of the topic to be unbookmarked
+      example: 1
+  responses:
+    '200':
+      description: Topic successfully unbookmarked for the calling user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "success"
+              message:
+                type: string
+                example: "Topic unbookmarked successfully."
+    '400':
+      description: Invalid request, possibly due to invalid topic ID or missing parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Invalid request: topic ID is missing or invalid."
+    '404':
+      description: Topic not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Topic ID not found."
+    '401':
+      description: Unauthorized access
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Unauthorized: Please log in to unbookmark topics."
+
