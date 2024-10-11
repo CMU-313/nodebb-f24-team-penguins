@@ -21,15 +21,16 @@ define('forum/category', [
 
 	Category.init = function () {
 		const cid = ajaxify.data.cid;
+		Category.cid = cid;
 
 		app.enterRoom('category_' + cid);
+
 
 		share.addShareHandlers(ajaxify.data.name);
 
 		topicList.init('category', loadTopicsAfter);
 
 		sort.handleSort('categoryTopicSort', 'category/' + ajaxify.data.slug);
-
 		if (!config.usePagination) {
 			navigator.init('[component="category/topic"]', ajaxify.data.topic_count, Category.toTop, Category.toBottom);
 		} else {
@@ -67,8 +68,10 @@ define('forum/category', [
 	}
 
 	function handleSearch() {
-		$('#search-input').on('input', async function () {
-			const query = $(this).val();
+		$('#category-search').on('submit', async function () {
+			const query = $('#search-input').val().trim();
+			const cid = Category.cid;
+
 			if (query.length === 0) {
 				// Optionally reload default topics if search input is cleared
 				loadTopicsAfter(0, 'next', () => {});
@@ -76,8 +79,11 @@ define('forum/category', [
 			}
 
 			try {
-				const { topics } = await api.get(`/categories/${ajaxify.data.cid}/topics/search`, {
-					query: query,
+				const { topics } = await api.get('/api/v3/search/topics', {
+					params: {
+						query: query,
+						cid: cid,
+					},
 				});
 				$('[component="category/topic-list"]').empty();
 				app.parseAndTranslate('category', 'topics', { topics }, function (html) {
