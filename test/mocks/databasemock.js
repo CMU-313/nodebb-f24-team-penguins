@@ -130,17 +130,6 @@ const db = require('../../src/database');
 
 module.exports = db;
 
-// from Chatgpt
-db.getSetMembers = async function (setName) {
-	// Check the set name and return the mock data accordingly
-	if (setName === 'testSet1') {
-		return ['1', '2', '3', '4', '5']; // Mock members for testSet1
-	} else if (setName === 'parallelset') {
-		return ['1', '2', '3']; // Mock members for parallelset
-	}
-	return []; // Default case for other sets
-};
-
 before(async function () {
 	this.timeout(30000);
 
