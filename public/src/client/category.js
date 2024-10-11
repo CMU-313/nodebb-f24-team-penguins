@@ -16,6 +16,7 @@ define('forum/category', [
 	$(window).on('action:ajaxify.start', function (ev, data) {
 		if (!String(data.url).startsWith('category/')) {
 			navigator.disable();
+			// Category.init();
 		}
 	});
 
@@ -43,6 +44,7 @@ define('forum/category', [
 		handleLoadMoreSubcategories();
 
 		handleSearch();
+		handleBookmarks();
 
 		categorySelector.init($('[component="category-selector"]'), {
 			privilege: 'find',
@@ -87,6 +89,28 @@ define('forum/category', [
 				});
 			} catch (err) {
 				alerts.error('Search failed. Please try again.');
+			}
+		});
+	}
+
+	function handleBookmarks() {
+		$('[component="category/bookmark"]').on('click', async function () {
+			const $this = $(this);
+			const topicId = $this.data('tid');
+			const isBookmarked = $this.hasClass('bookmarked');
+
+			try {
+				if (isBookmarked) {
+					await api.delete(`/topics/${topicId}/bookmark`);
+					$this.removeClass('bookmarked').attr('title', 'Bookmark this topic');
+				} else {
+					await api.post(`/topics/${topicId}/bookmark`);
+					$this.addClass('bookmarked').attr('title', 'Unbookmark this topic');
+				}
+
+				alerts.success(isBookmarked ? 'Topic unbookmarked' : 'Topic bookmarked');
+			} catch (err) {
+				alerts.error('Bookmark action failed. Please try again.');
 			}
 		});
 	}
