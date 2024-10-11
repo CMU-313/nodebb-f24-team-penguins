@@ -35,3 +35,6 @@ Automated tests for the search feature can be found in the following directory o
 - **User Experience**: Confirms that the search interface behaves as expected when queries are entered, results are displayed, and topics are clicked.
 
 
+### Bookmark Feature
+
+- **Incomplete**: Ran into technical issues and time constraints due to underestimating tasks. User Story 1 (Search) was pushed back, leading to less time to complete User Story 2 (Bookmark).
