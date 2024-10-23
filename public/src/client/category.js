@@ -13,10 +13,10 @@ define('forum/category', [
 ], function (infinitescroll, share, navigator, topicList, sort, categorySelector, hooks, alerts, api) {
 	const Category = {};
 
+	let searchResultCount = 0;
 	$(window).on('action:ajaxify.start', function (ev, data) {
 		if (!String(data.url).startsWith('category/')) {
 			navigator.disable();
-			// Category.init();
 		}
 	});
 
@@ -25,7 +25,6 @@ define('forum/category', [
 		Category.cid = cid;
 
 		app.enterRoom('category_' + cid);
-
 
 		share.addShareHandlers(ajaxify.data.name);
 
@@ -44,7 +43,6 @@ define('forum/category', [
 
 		handleLoadMoreSubcategories();
 
-		handleSearch();
 		handleBookmarks();
 
 		categorySelector.init($('[component="category-selector"]'), {
@@ -57,6 +55,7 @@ define('forum/category', [
 
 		hooks.fire('action:topics.loaded', { topics: ajaxify.data.topics });
 		hooks.fire('action:category.loaded', { cid: ajaxify.data.cid });
+		handleSearch();
 	};
 
 	function handleScrollToTopicIndex() {
@@ -69,33 +68,47 @@ define('forum/category', [
 		}
 	}
 
-	function handleSearch() {
-		$('#category-search').on('submit', async function () {
-			const query = $('#search-input').val().trim();
-			const cid = Category.cid;
+	function handleSearch(params) {
+		searchResultCount = params && params.resultCount;
+		$('#search-user').on('keyup', utils.debounce(doSearch, 250));
+	}
 
-			if (query.length === 0) {
-				// Optionally reload default topics if search input is cleared
-				loadTopicsAfter(0, 'next', () => {});
-				return;
-			}
+	function doSearch() {
+		$('[component="user/search/icon"]').removeClass('fa-search').addClass('fa-spinner fa-spin');
 
-			try {
-				const { topics } = await api.get('/api/v3/search/topics', {
-					params: {
-						query: query,
-						cid: cid,
-					},
-				});
-				$('[component="category/topic-list"]').empty();
-				app.parseAndTranslate('category', 'topics', { topics }, function (html) {
-					html.find('.timeago').timeago();
-					$('[component="category/topic-list"]').append(html);
-					hooks.fire('action:topics.loaded', { topics });
-				});
-			} catch (err) {
-				alerts.error('Search failed. Please try again.');
-			}
+		const query = $('#search-user').val().trim();
+		const cid = ajaxify.data.cid || Category.cid;
+
+		const params = {
+			query: query,
+			cid: cid,
+		};
+
+		api.get('/api/v3/search/topics', params)
+			.then(({ topics }) => {
+				console.log('API response topics:', topics);
+				renderSearchResults(topics);
+			});
+	}
+
+	function renderSearchResults(topics) {
+		if (searchResultCount) {
+			topics = topics.slice(0, searchResultCount);
+		}
+
+		const tplData = {
+			topics: topics,
+			showSelect: ajaxify.data.showSelect,
+			template: {
+				name: 'category',
+			},
+		};
+		tplData.template.category = true;
+		app.parseAndTranslate('category', 'topics', tplData, function (html) {
+			const topicListEl = $('[component="category"]');
+			topicListEl.empty().append(html);
+			topicListEl.find('.timeago').timeago();
+			$('[component="user/search/icon"]').addClass('fa-search').removeClass('fa-spinner fa-spin');
 		});
 	}
 
