@@ -1,10 +1,9 @@
+'use strict';
 
 const Iroh = require('iroh');
 
 // Define the code to analyze
 const code = `
-'use strict';
-
 define('forum/category', [
 	'forum/infinitescroll',
 	'share',
@@ -91,10 +90,10 @@ define('forum/category', [
 
 		api.get('/api/v3/search/topics', params)
 			.then(function(response) {
-                var topics = response.topics;
-                console.log('API response topics:', topics);
-                renderSearchResults(topics);
-            });
+				var topics = response.topics;
+				console.log('API response topics:', topics);
+				renderSearchResults(topics);
+			});
 
 	}
 
@@ -219,27 +218,27 @@ define('forum/category', [
 `;
 
 
-let stage = new Iroh.Stage(code);
+const stage = new Iroh.Stage(code);
 
 stage.addListener(Iroh.FUNCTION)
-.on("enter", (e) => {
-	console.log("Function entered:", e.name);
-})
-.on("leave", (e) => {
-	console.log("Function left:", e.name);
-});
+	.on('enter', (e) => {
+		console.log('Function entered:', e.name);
+	})
+	.on('leave', (e) => {
+		console.log('Function left:', e.name);
+	});
 
 stage.addListener(Iroh.VAR)
-.on("after", (e) => {
-	console.log("Variable declared:", e.name, "with value:", e.value);
-});
+	.on('after', (e) => {
+		console.log('Variable declared:', e.name, 'with value:', e.value);
+	});
 
 stage.addListener(Iroh.LOOP)
-.on("enter", (e) => {
-	console.log("Entering loop at indent level:", e.indent);
-})
-.on("leave", (e) => {
-	console.log("Leaving loop at indent level:", e.indent);
-});
-eval(stage.script);
+	.on('enter', (e) => {
+		console.log('Entering loop at indent level:', e.indent);
+	})
+	.on('leave', (e) => {
+		console.log('Leaving loop at indent level:', e.indent);
+	});
+
 
