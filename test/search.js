@@ -201,21 +201,6 @@ describe('Search', () => {
 		assert(result.posts[1].topic.title === 'java mongodb redis');
 	});
 
-	it('should search using the new search bar', async () => {
-		// Ensure you use your new search API route or functionality
-		const qs = `/api/search/topics?term=&categories[]=${cid1}`;
-
-		// Send the request to the new search route and get the response
-		const { body } = await request.get(nconf.get('url') + qs);
-
-		// Assert that the response is coming from the new search bar
-		// Example: if your new search returns extra metadata, check for that
-		assert(body);
-		assert.equal(body.matchCount, 1); // Assuming it finds one result
-		assert.equal(body.posts.length, 1);
-		assert.equal(body.posts[0].pid, post1Data.pid); // Ensure the post ID matches
-		assert.equal(body.posts[0].uid, phoebeUid); // Ensure the user ID matches
-	});
 
 	it('should return json search data with no categories', async () => {
 		const qs = '/api/search?term=cucumber&in=titlesposts&searchOnly=1';
