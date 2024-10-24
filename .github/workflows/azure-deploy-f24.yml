@@ -44,6 +44,7 @@ jobs:
             "redis:port": "6379",
             "redis:password": "${{ secrets.REDIS_PASSWORD }}" }'
           npm install https://github.com/CMU-313/nodebb-frontend-f24-team-penguins.git
+          ./nodebb build
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
