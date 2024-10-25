@@ -48,6 +48,10 @@ jobs:
         with:
           useLockFile: false
 
+      
+      - name: Iroh Install
+        run: npm install iroh
+
       - name: Setup for Redis
         env:
           SETUP: >-
