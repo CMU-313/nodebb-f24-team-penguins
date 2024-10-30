@@ -1,18 +1,18 @@
-name: Lint and test
+name: StandardJS Lint
 
 on:
-  pull_request:
-    branches:
-      - f24
-  workflow_call: # Usually called from deploy
+    pull_request:
+      branches:
+        - f24
+    workflow_call:
 
 defaults:
   run:
     shell: bash
 
 permissions:
-  checks: write  # for coverallsapp/github-action to create new checks
-  contents: read  # for actions/checkout to fetch code
+  checks: write 
+  contents: read
 
 jobs:
   test:
@@ -74,14 +74,5 @@ jobs:
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
 
-      - name: Run ESLint
-        run: npm run lint:es
-
-      - name: Node tests
-        run: npm test
-
-      - name: Extract coverage info
-        run: npm run coverage
-
-      - name: Test coverage
-        uses: coverallsapp/github-action@v2
+      - name: Run Standard
+        run: npm run lint:s
