@@ -11,7 +11,8 @@
     "main": "app.js",
     "scripts": {
         "start": "node loader.js",
-        "lint": "eslint --cache ./nodebb .",
+        "lint:es": "eslint --cache ./nodebb .",
+        "lint:s": "standard",
         "test": "nyc --reporter=html --reporter=text-summary mocha",
         "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage"
