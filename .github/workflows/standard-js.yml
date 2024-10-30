@@ -44,9 +44,10 @@ jobs:
           node-version: 20
 
       - name: NPM Install
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
+        run: npm install
+
+      - name: Standard Install
+        run: npm install standard --global
 
       - name: Setup for Redis
         env:
