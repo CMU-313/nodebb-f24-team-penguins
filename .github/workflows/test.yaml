@@ -44,10 +44,9 @@ jobs:
           node-version: 20
 
       - name: NPM Install
-        run: npm install
-
-      - name: Standard Install
-        run: npm install standard --global
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
 
 
       - name: Setup for Redis
@@ -77,7 +76,7 @@ jobs:
           node app --setup="${SETUP}" --ci="${CI}"
 
       - name: Run ESLint
-        run: npm run lint:es
+        run: npm run lint
 
       - name: Node tests
         run: npm test
