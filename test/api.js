@@ -663,8 +663,6 @@ describe('API', async () => {
 		Object.keys(response).forEach((prop) => {
 			if (additionalProperties) { // All bets are off
 				return;
-			} else if (prop === 'isEnglish' || prop === `translatedContent`) {
-				return;
 			}
 
 			assert(schema[prop], `"${prop}" was found in response, but is not defined in schema (path: ${method} ${path}, context: ${context})`);
