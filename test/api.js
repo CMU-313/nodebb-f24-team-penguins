@@ -663,8 +663,7 @@ describe('API', async () => {
 		Object.keys(response).forEach((prop) => {
 			if (additionalProperties) { // All bets are off
 				return;
-			}
-			else if (prop === 'isEnglish' || prop === `translatedContent`) {
+			} else if (prop === 'isEnglish' || prop === `translatedContent`) {
 				return;
 			}
 
