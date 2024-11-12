@@ -43,7 +43,7 @@ define('forum/category', [
 
 		handleLoadMoreSubcategories();
 
-		handleBookmarks();
+		
 
 		categorySelector.init($('[component="category-selector"]'), {
 			privilege: 'find',
@@ -112,27 +112,6 @@ define('forum/category', [
 		});
 	}
 
-	function handleBookmarks() {
-		$('[component="category/bookmark"]').on('click', async function () {
-			const $this = $(this);
-			const topicId = $this.data('tid');
-			const isBookmarked = $this.hasClass('bookmarked');
-
-			try {
-				if (isBookmarked) {
-					await api.delete(`/topics/${topicId}/bookmark`);
-					$this.removeClass('bookmarked').attr('title', 'Bookmark this topic');
-				} else {
-					await api.post(`/topics/${topicId}/bookmark`);
-					$this.addClass('bookmarked').attr('title', 'Unbookmark this topic');
-				}
-
-				alerts.success(isBookmarked ? 'Topic unbookmarked' : 'Topic bookmarked');
-			} catch (err) {
-				alerts.error('Bookmark action failed. Please try again.');
-			}
-		});
-	}
 
 	function handleIgnoreWatch(cid) {
 		$('[component="category/watching"], [component="category/tracking"], [component="category/ignoring"], [component="category/notwatching"]').on('click', function () {

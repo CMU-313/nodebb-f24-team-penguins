@@ -164,8 +164,6 @@ paths:
     $ref: 'write/topics/tid/read.yaml'
   /topics/{tid}/bump:
     $ref: 'write/topics/tid/bump.yaml'
-  /topics/{tid}/bookmarks:
-    $ref: 'write/topics/tid/bookmarks.yaml'
   /tags/{tag}/follow:
     $ref: 'write/tags/tag/follow.yaml'
   /posts/{pid}:

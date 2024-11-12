@@ -15,22 +15,7 @@ const { doTopicAction } = apiHelpers;
 const websockets = require('../socket.io');
 const socketHelpers = require('../socket.io/helpers');
 
-const topicsAPI = {};
-
-topicsAPI.getTopicsFields = async function () {
-	// Simulating fetching topic fields
-	return [
-		{ title: 'NodeBB' },
-		{ title: 'Welcome' },
-	];
-};
-
-topicsAPI.getTopics = async function () {
-	return [
-		{ tid: 1, title: 'Welcome to your NodeBB' },
-		{ tid: 2, title: 'New Discussion' },
-	];
-};
+const topicsAPI = module.exports;
 
 topicsAPI._checkThumbPrivileges = async function ({ tid, uid }) {
 	// req.params.tid could be either a tid (pushing a new thumb to an existing topic)
@@ -313,17 +298,3 @@ topicsAPI.bump = async (caller, { tid }) => {
 	await topics.markAsUnreadForAll(tid);
 	topics.pushUnreadCount(caller.uid);
 };
-
-topicsAPI.bookmark = async (caller, { tid }) => {
-	if (!tid) {
-		throw new Error('[[error:invalid-tid]]');
-	}
-
-	if (!caller || !caller.uid) {
-		throw new Error('[[error:not-logged-in]]');
-	}
-	await topics.bookmark(tid, caller.uid);
-	return { message: '[[success:topic-has-been-bookmarked]]' };
-};
-
-module.exports = topicsAPI;
