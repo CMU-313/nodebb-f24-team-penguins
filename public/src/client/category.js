@@ -43,7 +43,7 @@ define('forum/category', [
 
 		handleLoadMoreSubcategories();
 
-		
+
 
 		categorySelector.init($('[component="category-selector"]'), {
 			privilege: 'find',
