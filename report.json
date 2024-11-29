@@ -1,0 +1,1055 @@
+{
+    "reports": [
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 10,
+                    "physical": 45
+                },
+                "cyclomatic": 1,
+                "halstead": {
+                    "operators": {
+                        "distinct": 4,
+                        "total": 23,
+                        "identifiers": [
+                            "const",
+                            "=",
+                            "()",
+                            "."
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 17,
+                        "total": 24,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "meta",
+                            "\"../meta\"",
+                            "require",
+                            "analytics",
+                            "\"../analytics\"",
+                            "privileges",
+                            "\"../privileges\"",
+                            "groups",
+                            "\"../groups\"",
+                            "adminApi",
+                            "module",
+                            "exports",
+                            "updateSetting",
+                            "getAnalyticsKeys",
+                            "getAnalyticsData",
+                            "listGroups"
+                        ]
+                    },
+                    "length": 47,
+                    "vocabulary": 21,
+                    "difficulty": 2.823529411764706,
+                    "volume": 206.43891887060175,
+                    "effort": 582.886359164052,
+                    "bugs": 0.06881297295686725,
+                    "time": 32.382575509114
+                },
+                "params": 0,
+                "line": 1,
+                "cyclomaticDensity": 10
+            },
+            "functions": [],
+            "dependencies": [
+                {
+                    "line": 3,
+                    "path": "../meta",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 4,
+                    "path": "../analytics",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 5,
+                    "path": "../privileges",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 6,
+                    "path": "../groups",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 111.91958802208289,
+            "loc": 10,
+            "cyclomatic": 1,
+            "effort": 582.886359164052,
+            "params": 0,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/admin.js"
+        },
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 68,
+                    "physical": 424
+                },
+                "cyclomatic": 14,
+                "halstead": {
+                    "operators": {
+                        "distinct": 17,
+                        "total": 188,
+                        "identifiers": [
+                            "const",
+                            "=",
+                            "()",
+                            ".",
+                            "function",
+                            ":?",
+                            "&&",
+                            "! (prefix)",
+                            ">",
+                            "||",
+                            "if",
+                            "<",
+                            "-",
+                            "return",
+                            "throw",
+                            "new",
+                            "==="
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 94,
+                        "total": 182,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "validator",
+                            "\"validator\"",
+                            "require",
+                            "winston",
+                            "\"winston\"",
+                            "db",
+                            "\"../database\"",
+                            "user",
+                            "\"../user\"",
+                            "meta",
+                            "\"../meta\"",
+                            "messaging",
+                            "\"../messaging\"",
+                            "notifications",
+                            "\"../notifications\"",
+                            "privileges",
+                            "\"../privileges\"",
+                            "plugins",
+                            "\"../plugins\"",
+                            "utils",
+                            "\"../utils\"",
+                            "websockets",
+                            "\"../socket.io\"",
+                            "socketHelpers",
+                            "\"../socket.io/helpers\"",
+                            "chatsAPI",
+                            "module",
+                            "exports",
+                            "rateLimitExceeded",
+                            "caller",
+                            "field",
+                            "session",
+                            "request",
+                            "now",
+                            "Date",
+                            "newbie",
+                            "isPrivileged",
+                            "config",
+                            "newbieReputationThreshold",
+                            "reputation",
+                            "delay",
+                            "newbieChatMessageDelay",
+                            "chatMessageDelay",
+                            0,
+                            true,
+                            false,
+                            "list",
+                            "create",
+                            "<anonymous>",
+                            "data",
+                            "\"[[error:too-many-messages]]\"",
+                            "Error",
+                            "\"[[error:invalid-data]]\"",
+                            "isPublic",
+                            "type",
+                            "\"public\"",
+                            "isAdmin",
+                            "\"[[error:no-privileges]]\"",
+                            "uids",
+                            "Array",
+                            "isArray",
+                            "length",
+                            "\"[[error:no-users-selected]]\"",
+                            "groups",
+                            "\"[[error:no-groups-selected]]\"",
+                            "notificationSetting",
+                            "notificationSettings",
+                            "ATMENTION",
+                            "ALLMESSAGES",
+                            "roomId",
+                            "getUnread",
+                            "sortPublicRooms",
+                            "get",
+                            "post",
+                            "update",
+                            "rename",
+                            "mark",
+                            "watch",
+                            "toggleTyping",
+                            "users",
+                            "invite",
+                            "kick",
+                            "toggleOwner",
+                            "listMessages",
+                            "getPinnedMessages",
+                            "getMessage",
+                            "getRawMessage",
+                            "getIpAddress",
+                            "editMessage",
+                            "deleteMessage",
+                            "restoreMessage",
+                            "pinMessage",
+                            "unpinMessage"
+                        ]
+                    },
+                    "length": 370,
+                    "vocabulary": 111,
+                    "difficulty": 16.45744680851064,
+                    "volume": 2513.9338705495393,
+                    "effort": 41372.932954682314,
+                    "bugs": 0.8379779568498464,
+                    "time": 2298.4962752601286
+                },
+                "params": 4,
+                "line": 1,
+                "cyclomaticDensity": 20.588235294117645
+            },
+            "functions": [
+                {
+                    "name": "rateLimitExceeded",
+                    "sloc": {
+                        "logical": 10,
+                        "physical": 18
+                    },
+                    "cyclomatic": 5,
+                    "halstead": {
+                        "operators": {
+                            "distinct": 13,
+                            "total": 39,
+                            "identifiers": [
+                                "const",
+                                "=",
+                                ":?",
+                                ".",
+                                "()",
+                                "&&",
+                                "! (prefix)",
+                                ">",
+                                "||",
+                                "if",
+                                "<",
+                                "-",
+                                "return"
+                            ]
+                        },
+                        "operands": {
+                            "distinct": 18,
+                            "total": 41,
+                            "identifiers": [
+                                "caller",
+                                "field",
+                                "session",
+                                "request",
+                                "now",
+                                "Date",
+                                "newbie",
+                                "isPrivileged",
+                                "meta",
+                                "config",
+                                "newbieReputationThreshold",
+                                "reputation",
+                                "delay",
+                                "newbieChatMessageDelay",
+                                "chatMessageDelay",
+                                0,
+                                true,
+                                false
+                            ]
+                        },
+                        "length": 80,
+                        "vocabulary": 31,
+                        "difficulty": 14.805555555555555,
+                        "volume": 396.3357048309501,
+                        "effort": 5867.9702965249,
+                        "bugs": 0.1321119016103167,
+                        "time": 325.9983498069389
+                    },
+                    "params": 2,
+                    "line": 20,
+                    "cyclomaticDensity": 50
+                },
+                {
+                    "name": "chatsAPI.create",
+                    "sloc": {
+                        "logical": 18,
+                        "physical": 34
+                    },
+                    "cyclomatic": 10,
+                    "halstead": {
+                        "operators": {
+                            "distinct": 13,
+                            "total": 58,
+                            "identifiers": [
+                                "if",
+                                "throw",
+                                "new",
+                                "! (prefix)",
+                                "const",
+                                "=",
+                                "===",
+                                ".",
+                                "&&",
+                                "||",
+                                "()",
+                                ":?",
+                                "return"
+                            ]
+                        },
+                        "operands": {
+                            "distinct": 23,
+                            "total": 49,
+                            "identifiers": [
+                                "caller",
+                                "data",
+                                "\"[[error:too-many-messages]]\"",
+                                "Error",
+                                "\"[[error:invalid-data]]\"",
+                                "isPublic",
+                                "type",
+                                "\"public\"",
+                                "isAdmin",
+                                "\"[[error:no-privileges]]\"",
+                                "uids",
+                                "Array",
+                                "isArray",
+                                "length",
+                                "\"[[error:no-users-selected]]\"",
+                                "groups",
+                                "\"[[error:no-groups-selected]]\"",
+                                "notificationSetting",
+                                "messaging",
+                                "notificationSettings",
+                                "ATMENTION",
+                                "ALLMESSAGES",
+                                "roomId"
+                            ]
+                        },
+                        "length": 107,
+                        "vocabulary": 36,
+                        "difficulty": 13.847826086956523,
+                        "volume": 553.1819751543273,
+                        "effort": 7660.36778637623,
+                        "bugs": 0.1843939917181091,
+                        "time": 425.57598813201275
+                    },
+                    "params": 2,
+                    "line": 53,
+                    "cyclomaticDensity": 55.55555555555556
+                }
+            ],
+            "dependencies": [
+                {
+                    "line": 3,
+                    "path": "validator",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 4,
+                    "path": "winston",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 6,
+                    "path": "../database",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 7,
+                    "path": "../user",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 8,
+                    "path": "../meta",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 9,
+                    "path": "../messaging",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 10,
+                    "path": "../notifications",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 11,
+                    "path": "../privileges",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 12,
+                    "path": "../plugins",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 13,
+                    "path": "../utils",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 15,
+                    "path": "../socket.io",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 16,
+                    "path": "../socket.io/helpers",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 97.62151368791658,
+            "loc": 14,
+            "cyclomatic": 7.5,
+            "effort": 6764.169041450565,
+            "params": 2,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/chats.js"
+        },
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 5,
+                    "physical": 11
+                },
+                "cyclomatic": 1,
+                "halstead": {
+                    "operators": {
+                        "distinct": 4,
+                        "total": 11,
+                        "identifiers": [
+                            "const",
+                            "=",
+                            ".",
+                            "()"
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 10,
+                        "total": 12,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "fs",
+                            "\"fs\"",
+                            "require",
+                            "promises",
+                            "filesApi",
+                            "module",
+                            "exports",
+                            "delete",
+                            "createFolder"
+                        ]
+                    },
+                    "length": 23,
+                    "vocabulary": 14,
+                    "difficulty": 2.4,
+                    "volume": 87.56916320732489,
+                    "effort": 210.16599169757973,
+                    "bugs": 0.029189721069108297,
+                    "time": 11.675888427643319
+                },
+                "params": 0,
+                "line": 1,
+                "cyclomaticDensity": 20
+            },
+            "functions": [],
+            "dependencies": [
+                {
+                    "line": 3,
+                    "path": "fs",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 126.63729583798167,
+            "loc": 5,
+            "cyclomatic": 1,
+            "effort": 210.16599169757973,
+            "params": 0,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/files.js"
+        },
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 11,
+                    "physical": 105
+                },
+                "cyclomatic": 1,
+                "halstead": {
+                    "operators": {
+                        "distinct": 4,
+                        "total": 23,
+                        "identifiers": [
+                            "const",
+                            "=",
+                            "()",
+                            "."
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 16,
+                        "total": 24,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "user",
+                            "\"../user\"",
+                            "require",
+                            "flags",
+                            "\"../flags\"",
+                            "flagsApi",
+                            "module",
+                            "exports",
+                            "create",
+                            "get",
+                            "update",
+                            "delete",
+                            "rescind",
+                            "appendNote",
+                            "deleteNote"
+                        ]
+                    },
+                    "length": 47,
+                    "vocabulary": 20,
+                    "difficulty": 3,
+                    "volume": 203.13062045970605,
+                    "effort": 609.3918613791182,
+                    "bugs": 0.06771020681990202,
+                    "time": 33.855103409951006
+                },
+                "params": 0,
+                "line": 1,
+                "cyclomaticDensity": 9.090909090909092
+            },
+            "functions": [],
+            "dependencies": [
+                {
+                    "line": 3,
+                    "path": "../user",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 4,
+                    "path": "../flags",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 110.22347821193563,
+            "loc": 11,
+            "cyclomatic": 1,
+            "effort": 609.3918613791182,
+            "params": 0,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/flags.js"
+        },
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 14,
+                    "physical": 16
+                },
+                "cyclomatic": 1,
+                "halstead": {
+                    "operators": {
+                        "distinct": 5,
+                        "total": 27,
+                        "identifiers": [
+                            "=",
+                            ".",
+                            "{}",
+                            ":",
+                            "()"
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 29,
+                        "total": 40,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "module",
+                            "exports",
+                            "<anonymous>",
+                            "admin",
+                            "\"./admin\"",
+                            "require",
+                            "users",
+                            "\"./users\"",
+                            "groups",
+                            "\"./groups\"",
+                            "topics",
+                            "\"./topics\"",
+                            "tags",
+                            "\"./tags\"",
+                            "posts",
+                            "\"./posts\"",
+                            "chats",
+                            "\"./chats\"",
+                            "categories",
+                            "\"./categories\"",
+                            "search",
+                            "\"./search\"",
+                            "flags",
+                            "\"./flags\"",
+                            "files",
+                            "\"./files\"",
+                            "utils",
+                            "\"./utils\""
+                        ]
+                    },
+                    "length": 67,
+                    "vocabulary": 34,
+                    "difficulty": 3.4482758620689657,
+                    "volume": 340.8600103637728,
+                    "effort": 1175.3793460819752,
+                    "bugs": 0.11362000345459093,
+                    "time": 65.29885256010974
+                },
+                "params": 0,
+                "line": 1,
+                "cyclomaticDensity": 7.142857142857142
+            },
+            "functions": [],
+            "dependencies": [
+                {
+                    "line": 4,
+                    "path": "./admin",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 5,
+                    "path": "./users",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 6,
+                    "path": "./groups",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 7,
+                    "path": "./topics",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 8,
+                    "path": "./tags",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 9,
+                    "path": "./posts",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 10,
+                    "path": "./chats",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 11,
+                    "path": "./categories",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 12,
+                    "path": "./search",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 13,
+                    "path": "./flags",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 14,
+                    "path": "./files",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 15,
+                    "path": "./utils",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 104.0701071802969,
+            "loc": 14,
+            "cyclomatic": 1,
+            "effort": 1175.3793460819752,
+            "params": 0,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/index.js"
+        },
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 7,
+                    "physical": 13
+                },
+                "cyclomatic": 1,
+                "halstead": {
+                    "operators": {
+                        "distinct": 5,
+                        "total": 12,
+                        "identifiers": [
+                            "const",
+                            "=",
+                            "()",
+                            ".",
+                            "function"
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 12,
+                        "total": 17,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "topics",
+                            "\"../topics\"",
+                            "require",
+                            "tagsAPI",
+                            "module",
+                            "exports",
+                            "follow",
+                            "<anonymous>",
+                            "caller",
+                            "data",
+                            "unfollow"
+                        ]
+                    },
+                    "length": 29,
+                    "vocabulary": 17,
+                    "difficulty": 3.541666666666667,
+                    "volume": 118.53642239625987,
+                    "effort": 419.81649598675375,
+                    "bugs": 0.03951214079875329,
+                    "time": 23.323138665930763
+                },
+                "params": 4,
+                "line": 1,
+                "cyclomaticDensity": 14.285714285714285
+            },
+            "functions": [
+                {
+                    "name": "tagsAPI.follow",
+                    "sloc": {
+                        "logical": 1,
+                        "physical": 3
+                    },
+                    "cyclomatic": 1,
+                    "halstead": {
+                        "operators": {
+                            "distinct": 0,
+                            "total": 0,
+                            "identifiers": []
+                        },
+                        "operands": {
+                            "distinct": 2,
+                            "total": 2,
+                            "identifiers": [
+                                "caller",
+                                "data"
+                            ]
+                        },
+                        "length": 2,
+                        "vocabulary": 2,
+                        "difficulty": 0,
+                        "volume": 2,
+                        "effort": 0,
+                        "bugs": 0.0006666666666666666,
+                        "time": 0
+                    },
+                    "params": 2,
+                    "line": 7,
+                    "cyclomaticDensity": 100
+                },
+                {
+                    "name": "tagsAPI.unfollow",
+                    "sloc": {
+                        "logical": 1,
+                        "physical": 3
+                    },
+                    "cyclomatic": 1,
+                    "halstead": {
+                        "operators": {
+                            "distinct": 0,
+                            "total": 0,
+                            "identifiers": []
+                        },
+                        "operands": {
+                            "distinct": 2,
+                            "total": 2,
+                            "identifiers": [
+                                "caller",
+                                "data"
+                            ]
+                        },
+                        "length": 2,
+                        "vocabulary": 2,
+                        "difficulty": 0,
+                        "volume": 2,
+                        "effort": 0,
+                        "bugs": 0.0006666666666666666,
+                        "time": 0
+                    },
+                    "params": 2,
+                    "line": 11,
+                    "cyclomaticDensity": 100
+                }
+            ],
+            "dependencies": [
+                {
+                    "line": 3,
+                    "path": "../topics",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 171,
+            "loc": 1,
+            "cyclomatic": 1,
+            "effort": 0,
+            "params": 2,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/tags.js"
+        },
+        {
+            "aggregate": {
+                "sloc": {
+                    "logical": 16,
+                    "physical": 130
+                },
+                "cyclomatic": 1,
+                "halstead": {
+                    "operators": {
+                        "distinct": 5,
+                        "total": 45,
+                        "identifiers": [
+                            "const",
+                            "=",
+                            "()",
+                            ".",
+                            "{}"
+                        ]
+                    },
+                    "operands": {
+                        "distinct": 23,
+                        "total": 46,
+                        "identifiers": [
+                            "\"use strict\"",
+                            "db",
+                            "\"../database\"",
+                            "require",
+                            "user",
+                            "\"../user\"",
+                            "srcUtils",
+                            "\"../utils\"",
+                            "utils",
+                            "module",
+                            "exports",
+                            "tokens",
+                            "<anonymous>",
+                            "list",
+                            "count",
+                            "get",
+                            "generate",
+                            "add",
+                            "update",
+                            "roll",
+                            "delete",
+                            "log",
+                            "getLastSeen"
+                        ]
+                    },
+                    "length": 91,
+                    "vocabulary": 28,
+                    "difficulty": 5,
+                    "volume": 437.4692979072419,
+                    "effort": 2187.3464895362094,
+                    "bugs": 0.14582309930241397,
+                    "time": 121.5192494186783
+                },
+                "params": 0,
+                "line": 1,
+                "cyclomaticDensity": 6.25
+            },
+            "functions": [],
+            "dependencies": [
+                {
+                    "line": 3,
+                    "path": "../database",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 5,
+                    "path": "../user",
+                    "type": "CommonJS"
+                },
+                {
+                    "line": 6,
+                    "path": "../utils",
+                    "type": "CommonJS"
+                }
+            ],
+            "maintainability": 99.78274271642964,
+            "loc": 16,
+            "cyclomatic": 1,
+            "effort": 2187.3464895362094,
+            "params": 0,
+            "path": "/Users/zhangruoxin/Documents/CMU/Academic/F24/17-313/Projects/nodebb-f24-team-penguins/src/api/utils.js"
+        }
+    ],
+    "adjacencyMatrix": [
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "firstOrderDensity": 12.244897959183673,
+    "visibilityMatrix": [
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "changeCost": 26.53061224489796,
+    "coreSize": 85.71428571428571,
+    "loc": 10.142857142857142,
+    "cyclomatic": 1.9285714285714286,
+    "effort": 1647.0484413299284,
+    "params": 0.5714285714285714,
+    "maintainability": 117.32210366523476
+}
